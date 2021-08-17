@@ -8,15 +8,107 @@ asgiref==3.4.1 \
     --hash=sha256:4ef1ab46b484e3c706329cedeff284a5d40824200638503f5768edb6de7d58e9 \
     --hash=sha256:ffc141aa908e6f175673e7b1b3b7af4fdb0ecb738fc5c8b88f69f055c2415214
     # via django
+boto3==1.18.22 \
+    --hash=sha256:6cc7011cb857fecee54884ff344d6b793cd22af51142f715706c757d26d02bb1 \
+    --hash=sha256:7405ae77ce4f2151fae1b542183f9c0f7ffb57c288b1f152819cfcb88e9cf297
+    # via django-s3-folder-storage
+botocore==1.21.22 \
+    --hash=sha256:9c133caab58b04b4a9ab3f6523cc61cf815c1a5fde7b5ee279eefa48dc3a01d1 \
+    --hash=sha256:9df7a84840bcea10eb68f816d562c77656ec253a3a0dc3724e7e9ac086656e28
+    # via
+    #   boto3
+    #   s3transfer
+collectfast==2.2.0 \
+    --hash=sha256:2f6abc8cab7ec5114a7a9a3660ab629ec142556957220aa82857dc9b4381490d \
+    --hash=sha256:e716b2234ab50b5f1010b0d78c3fae8c6aebdb8b7c66ef5568503c33c1a5e19a
+    # via -r requirements.in
+dj-database-url==0.5.0 \
+    --hash=sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163 \
+    --hash=sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9
+    # via -r requirements.in
 django==3.2.6 \
     --hash=sha256:7f92413529aa0e291f3be78ab19be31aefb1e1c9a52cd59e130f505f27a51f13 \
     --hash=sha256:f27f8544c9d4c383bbe007c57e3235918e258364577373d4920e9162837be022
+    # via
+    #   -r requirements.in
+    #   collectfast
+    #   django-storages
+django-s3-folder-storage==0.5 \
+    --hash=sha256:eb5fd3994726f5b87ddc0ea1a6f1af3f598f9d743127c27d6dae111d18a79abe
+    # via -r requirements.in
+django-storages==1.11.1 \
+    --hash=sha256:c823dbf56c9e35b0999a13d7e05062b837bae36c518a40255d522fbe3750fbb4 \
+    --hash=sha256:f28765826d507a0309cfaa849bd084894bc71d81bf0d09479168d44785396f80
+    # via
+    #   collectfast
+    #   django-s3-folder-storage
+jmespath==0.10.0 \
+    --hash=sha256:b85d0567b8666149a93172712e68920734333c0ce7e89b78b3e987f71e5ed4f9 \
+    --hash=sha256:cdf6525904cc597730141d61b36f2e4b8ecc257c420fa2f4549bac2c2d0cb72f
+    # via
+    #   boto3
+    #   botocore
+psycopg2-binary==2.9.1 \
+    --hash=sha256:0b7dae87f0b729922e06f85f667de7bf16455d411971b2043bbd9577af9d1975 \
+    --hash=sha256:0f2e04bd2a2ab54fa44ee67fe2d002bb90cee1c0f1cc0ebc3148af7b02034cbd \
+    --hash=sha256:123c3fb684e9abfc47218d3784c7b4c47c8587951ea4dd5bc38b6636ac57f616 \
+    --hash=sha256:1473c0215b0613dd938db54a653f68251a45a78b05f6fc21af4326f40e8360a2 \
+    --hash=sha256:14db1752acdd2187d99cb2ca0a1a6dfe57fc65c3281e0f20e597aac8d2a5bd90 \
+    --hash=sha256:1e3a362790edc0a365385b1ac4cc0acc429a0c0d662d829a50b6ce743ae61b5a \
+    --hash=sha256:1e85b74cbbb3056e3656f1cc4781294df03383127a8114cbc6531e8b8367bf1e \
+    --hash=sha256:20f1ab44d8c352074e2d7ca67dc00843067788791be373e67a0911998787ce7d \
+    --hash=sha256:2f62c207d1740b0bde5c4e949f857b044818f734a3d57f1d0d0edc65050532ed \
+    --hash=sha256:3242b9619de955ab44581a03a64bdd7d5e470cc4183e8fcadd85ab9d3756ce7a \
+    --hash=sha256:35c4310f8febe41f442d3c65066ca93cccefd75013df3d8c736c5b93ec288140 \
+    --hash=sha256:4235f9d5ddcab0b8dbd723dca56ea2922b485ea00e1dafacf33b0c7e840b3d32 \
+    --hash=sha256:5ced67f1e34e1a450cdb48eb53ca73b60aa0af21c46b9b35ac3e581cf9f00e31 \
+    --hash=sha256:7360647ea04db2e7dff1648d1da825c8cf68dc5fbd80b8fb5b3ee9f068dcd21a \
+    --hash=sha256:8c13d72ed6af7fd2c8acbd95661cf9477f94e381fce0792c04981a8283b52917 \
+    --hash=sha256:988b47ac70d204aed01589ed342303da7c4d84b56c2f4c4b8b00deda123372bf \
+    --hash=sha256:995fc41ebda5a7a663a254a1dcac52638c3e847f48307b5416ee373da15075d7 \
+    --hash=sha256:a36c7eb6152ba5467fb264d73844877be8b0847874d4822b7cf2d3c0cb8cdcb0 \
+    --hash=sha256:aed4a9a7e3221b3e252c39d0bf794c438dc5453bc2963e8befe9d4cd324dff72 \
+    --hash=sha256:aef9aee84ec78af51107181d02fe8773b100b01c5dfde351184ad9223eab3698 \
+    --hash=sha256:b0221ca5a9837e040ebf61f48899926b5783668b7807419e4adae8175a31f773 \
+    --hash=sha256:b4d7679a08fea64573c969f6994a2631908bb2c0e69a7235648642f3d2e39a68 \
+    --hash=sha256:c250a7ec489b652c892e4f0a5d122cc14c3780f9f643e1a326754aedf82d9a76 \
+    --hash=sha256:ca86db5b561b894f9e5f115d6a159fff2a2570a652e07889d8a383b5fae66eb4 \
+    --hash=sha256:cfc523edecddaef56f6740d7de1ce24a2fdf94fd5e704091856a201872e37f9f \
+    --hash=sha256:da113b70f6ec40e7d81b43d1b139b9db6a05727ab8be1ee559f3a69854a69d34 \
+    --hash=sha256:f6fac64a38f6768e7bc7b035b9e10d8a538a9fadce06b983fb3e6fa55ac5f5ce \
+    --hash=sha256:f8559617b1fcf59a9aedba2c9838b5b6aa211ffedecabca412b92a1ff75aac1a \
+    --hash=sha256:fbb42a541b1093385a2d8c7eec94d26d30437d0e77c1d25dae1dcc46741a385e
+    # via -r requirements.in
+python-dateutil==2.8.2 \
+    --hash=sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86 \
+    --hash=sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9
+    # via botocore
+python-decouple==3.4 \
+    --hash=sha256:2e5adb0263a4f963b58d7407c4760a2465d464ee212d733e2a2c179e54c08d8f \
+    --hash=sha256:a8268466e6389a639a20deab9d880faee186eb1eb6a05e54375bdf158d691981
     # via -r requirements.in
 pytz==2021.1 \
     --hash=sha256:83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da \
     --hash=sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798
     # via django
+s3transfer==0.5.0 \
+    --hash=sha256:50ed823e1dc5868ad40c8dc92072f757aa0e653a192845c94a3b676f4a62da4c \
+    --hash=sha256:9c1dc369814391a6bda20ebbf4b70a0f34630592c9aa520856bf384916af2803
+    # via boto3
+six==1.16.0 \
+    --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
+    --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
+    # via python-dateutil
 sqlparse==0.4.1 \
     --hash=sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0 \
     --hash=sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8
     # via django
+typing-extensions==3.10.0.0 \
+    --hash=sha256:0ac0f89795dd19de6b97debb0c6af1c70987fd80a2d62d1958f7e56fcc31b497 \
+    --hash=sha256:50b6f157849174217d0656f99dc82fe932884fb250826c18350e159ec6cdf342 \
+    --hash=sha256:779383f6086d90c99ae41cf0ff39aac8a7937a9283ce0a414e5dd782f4c94a84
+    # via collectfast
+urllib3==1.26.6 \
+    --hash=sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4 \
+    --hash=sha256:f57b4c16c62fa2760b7e3d97c35b255512fb6b59a259730f36ba32ce9f8e342f
+    # via botocore
