@@ -4,3 +4,5 @@ psycopg2-binary
 dj-database-url
 django-s3-folder-storage
 collectfast
+python-telegram-bot
+gunicorn

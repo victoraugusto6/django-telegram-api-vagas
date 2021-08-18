@@ -36,6 +36,7 @@ AUTH_USER_MODEL = 'base.User'
 
 INSTALLED_APPS = [
     'vagas.base',
+    'vagas.vaga',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
