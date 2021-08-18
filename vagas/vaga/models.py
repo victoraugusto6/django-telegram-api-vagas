@@ -19,6 +19,8 @@ class Vaga(models.Model):
     framework = models.CharField(max_length=60, verbose_name='Framework')
     disponivel = models.BooleanField(default=False, verbose_name='Disponível')
     disponivel_ate = models.DateTimeField(verbose_name='Disponível Até')
+    contato = models.CharField(max_length=60, verbose_name='Contato')
+    disparado = models.BooleanField(default=False, editable=False, verbose_name='Disparado')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     uploaded_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
 
