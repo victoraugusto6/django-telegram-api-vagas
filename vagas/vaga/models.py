@@ -39,6 +39,8 @@ class Vaga(models.Model):
             "framework": self.framework,
             "disponivel": self.disponivel,
             "disponivel_ate": self.disponivel_ate,
+            "contato": self.contato,
+            "disparado": self.disparado,
             "created_at": self.created_at,
             "uploaded_at": self.uploaded_at
         }

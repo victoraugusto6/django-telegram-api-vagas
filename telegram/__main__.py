@@ -41,6 +41,7 @@ def enviar_vagas(update, context):
             vaga_formatada += '<strong>Framework: </strong>' + '\n' + str(vaga["framework"]) + '\n\n'
             vaga_formatada += '<strong>Disponível: </strong>' + '\n' + 'Sim' + '\n\n'
             vaga_formatada += '<strong>Disponível até</strong>: ' + '\n' + str(data_parser(vaga)) + '\n\n'
+            vaga_formatada += '<strong>Contato</strong>: ' + '\n' + str(vaga["contato"]) + '\n\n'
 
             enviar_mensagem(vaga_formatada, update, context)
 
