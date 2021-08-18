@@ -1,3 +1,5 @@
+import requests
+from dateutil.parser import parse
 import telegram
 from decouple import config
 from telegram.ext import CommandHandler, Updater
@@ -7,13 +9,40 @@ DEBUG = config('DEBUG')
 APP_NAME_HEROKU = config('APP_NAME_HEROKU')
 
 
-def envio_vagas(update, context):
+def data_parser(vaga):
+    return f'{parse(vaga["disponivel_ate"]).day}/' \
+           f'{parse(vaga["disponivel_ate"]).month}/{parse(vaga["disponivel_ate"]).year}\n' \
+           f'{parse(vaga["disponivel_ate"]).hour}h{parse(vaga["disponivel_ate"]).minute}m'
+
+
+def enviar_mensagem(message, update, context):
+    return context.bot.send_message(
+        chat_id=update.effective_chat.id, text=message, disable_web_page_preview=True,
+        parse_mode=telegram.ParseMode.HTML)
+
+
+def enviar_vagas(update, context):
     message = f'Olá, {update.message.from_user.first_name}! 😎\n'
     message += '<strong>Segue a lista de vagas:</strong>\n\n'
 
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=message, disable_web_page_preview=True,
-        parse_mode=telegram.ParseMode.HTML)
+    enviar_mensagem(message, update, context)
+
+    response = requests.get('https://django-telegram-api-vagas-2.herokuapp.com/vaga/')
+    data = response.json()
+
+    for vaga in data["vagas"]:
+        if vaga["disponivel"] is True:
+            vaga_formatada = '<strong>Vaga: </strong>' + '\n' + str(vaga["nome"]) + '\n\n'
+            vaga_formatada += '<strong>Empresa: </strong>' + '\n' + str(vaga["empresa"]) + '\n\n'
+            vaga_formatada += '<strong>Descrição: </strong>' + '\n' + str(vaga["descricao"]) + '\n\n'
+            vaga_formatada += '<strong>Salário: </strong>' + '\n' + 'R$ ' + str(vaga["salario"]) + '\n\n'
+            vaga_formatada += '<strong>Área: </strong>' + '\n' + str(vaga["area"]) + '\n\n'
+            vaga_formatada += '<strong>Linguagem: </strong>' + '\n' + str(vaga["linguagem"]) + '\n\n'
+            vaga_formatada += '<strong>Framework: </strong>' + '\n' + str(vaga["framework"]) + '\n\n'
+            vaga_formatada += '<strong>Disponível: </strong>' + '\n' + 'Sim' + '\n\n'
+            vaga_formatada += '<strong>Disponível até</strong>: ' + '\n' + str(data_parser(vaga)) + '\n\n'
+
+            enviar_mensagem(vaga_formatada, update, context)
 
 
 def main():
@@ -21,7 +50,7 @@ def main():
 
     dispatcher = updater.dispatcher
 
-    dispatcher.add_handler(CommandHandler("envio_vagas", envio_vagas))
+    dispatcher.add_handler(CommandHandler("enviar_vagas", enviar_vagas))
 
     if DEBUG:
         updater.start_polling()
