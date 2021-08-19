@@ -1,5 +1,11 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
+from vagas.vaga.models import Vaga
 
 
 def home(request):
-    return HttpResponse('Olá, base.')
+    vagas = Vaga.objects.all()
+    context = {
+        'vagas': vagas
+    }
+    return render(request, 'base/home.html', context)
