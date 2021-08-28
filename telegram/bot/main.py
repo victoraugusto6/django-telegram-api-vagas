@@ -1,18 +1,18 @@
-import requests
-from dateutil.parser import parse
+import os
 import telegram
 from decouple import config
 from telegram.ext import CommandHandler, Updater
+from django import setup
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vagas.settings")
+
+setup()
+
+from vagas.vaga.models import Vaga  # noqa
 
 TELEGRAM_TOKEN = config('TELEGRAM_TOKEN')
 DEBUG = config('DEBUG')
 APP_NAME_HEROKU = config('APP_NAME_HEROKU')
-
-
-def data_parser(vaga):
-    return f'{parse(vaga["disponivel_ate"]).day}/' \
-           f'{parse(vaga["disponivel_ate"]).month}/{parse(vaga["disponivel_ate"]).year}\n' \
-           f'{parse(vaga["disponivel_ate"]).hour}h{parse(vaga["disponivel_ate"]).minute}m'
 
 
 def enviar_mensagem(message, update, context):
@@ -21,17 +21,24 @@ def enviar_mensagem(message, update, context):
         parse_mode=telegram.ParseMode.HTML)
 
 
+def dados():
+    vagas = Vaga.objects.all()
+    vagas_list = []
+    for vaga in vagas:
+        vagas_list.append(vaga.vaga_to_dict())
+    return vagas_list
+
+
 def enviar_vagas(update, context):
     message = f'Olá, {update.message.from_user.first_name}! 😎\n'
     message += '<strong>Segue a lista de vagas:</strong>\n\n'
 
     enviar_mensagem(message, update, context)
 
-    response = requests.get('https://django-telegram-api-vagas-2.herokuapp.com/vaga/')
-    data = response.json()
+    data = dados()
 
-    for vaga in data["vagas"]:
-        if vaga["disponivel"] is True:
+    for vaga in data:
+        if vaga["disponivel"]:
             vaga_formatada = '<strong>Vaga: </strong>' + '\n' + str(vaga["nome"]) + '\n\n'
             vaga_formatada += '<strong>Empresa: </strong>' + '\n' + str(vaga["empresa"]) + '\n\n'
             vaga_formatada += '<strong>Descrição: </strong>' + '\n' + str(vaga["descricao"]) + '\n\n'
@@ -40,7 +47,7 @@ def enviar_vagas(update, context):
             vaga_formatada += '<strong>Linguagem: </strong>' + '\n' + str(vaga["linguagem"]) + '\n\n'
             vaga_formatada += '<strong>Framework: </strong>' + '\n' + str(vaga["framework"]) + '\n\n'
             vaga_formatada += '<strong>Disponível: </strong>' + '\n' + 'Sim' + '\n\n'
-            vaga_formatada += '<strong>Disponível até</strong>: ' + '\n' + str(data_parser(vaga)) + '\n\n'
+            vaga_formatada += '<strong>Disponível até</strong>: ' + f'\n {vaga["disponivel_ate"]:%d/%m/%Y %H:%M}  \n\n'
             vaga_formatada += '<strong>Contato</strong>: ' + '\n' + str(vaga["contato"]) + '\n\n'
 
             enviar_mensagem(vaga_formatada, update, context)
