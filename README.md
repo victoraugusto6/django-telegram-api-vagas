@@ -3,13 +3,13 @@
 
 ![gif-bot](https://user-images.githubusercontent.com/48570599/130121966-978f2c1e-a96d-4fd3-b647-abc9374722b9.gif)
 
-* **API**: https://django-telegram-api-vagas.herokuapp.com/
+* **API**: https://django-telegram-api-vagas-3.herokuapp.com/
 * **BOT** - Telegram: https://t.me/django_telegram_api_bot
 
 ### Django-Admin (Login)
 
 **Link**:
-https://django-telegram-api-vagas-3.herokuapp.com/
+https://django-telegram-api-vagas-3.herokuapp.com/admin
 
 **Usuário**:
 user@email.com
