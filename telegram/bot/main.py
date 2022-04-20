@@ -23,10 +23,7 @@ def enviar_mensagem(message, update, context):
 
 def dados():
     vagas = Vaga.objects.all()
-    vagas_list = []
-    for vaga in vagas:
-        vagas_list.append(vaga.vaga_to_dict())
-    return vagas_list
+    return [vaga.vaga_to_dict() for vaga in vagas]
 
 
 def enviar_vagas(update, context):
@@ -63,7 +60,6 @@ def main():
     if DEBUG:
         updater.start_polling()
 
-        updater.idle()
     else:
         port = config('PORT', cast=int)
 
@@ -72,7 +68,7 @@ def main():
                               url_path=TELEGRAM_TOKEN)
         updater.bot.setWebhook(f'https://{APP_NAME_HEROKU}.herokuapp.com/{TELEGRAM_TOKEN}')
 
-        updater.idle()
+    updater.idle()
 
 
 if __name__ == "__main__":
